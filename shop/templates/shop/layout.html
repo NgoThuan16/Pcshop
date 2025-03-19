@@ -1,0 +1,99 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Decor Dream</title>
+</head>
+
+
+<body>
+    <header style="position: sticky;
+    top: 0;
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+    z-index: 1;" class="bg-dark py-3">
+        <div class="container shadow bg-dark text-white">
+            <div class="row">
+                <div class="col-2 py-3">
+                    <img src="{%static 'images/Logo.png' %}" style="max-width: 50%;" alt="logo">
+                </div>
+
+                <div class="col-10 d-flex flex-row-reverse">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarNav">
+
+                                <form class="d-flex">
+                                    <input class="form-control mr-2" type="text" placeholder="Search">
+                                    <button class="btn btn-primary" type="button">Search</button>
+                                </form>
+
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item text-right">
+                                        <a class="nav-link text-white" href="{%url 'index'%}"><b>Home</b></a>
+                                    </li>
+                                    <li class="nav-item text-right">
+                                        <a class="nav-link text-muted" href="{%url 'about'%}"><b>About</b></a>
+                                    </li>
+                                    <li class="nav-item text-right">
+                                        <a class="nav-link text-muted" href="Product_Category_Page.html"><b>Services</b></a>
+                                    </li>
+                                    <li class="nav-item text-right">
+                                        <a class="nav-link text-muted" href="#"><b>Contact</b></a>
+                                    </li>
+                                    <li class="nav-item text-right">
+                                        <a class="nav-link text-white"
+                                            href="Login_Interface/index.html"><b>Login</b></a>
+                                    </li>
+                                    <li class="nav-item text-right">
+                                        <a class="nav-link text-white"
+                                            href="Register Form.html"><b>Register</b></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        {%block section%}
+        {% endblock %}
+    </section>
+    
+
+    <footer class="container mt-3 col-xl-12 col-lg-12 col-sm-12 col-md-12 shadow p-4 bg-dark text-white text-center">
+        <div class="row">
+            <div class="col-12">
+                <p>&#169; 2025 Decor Dream. All rights reserved.</p>
+            </div>
+            <div class="col-12">
+                <a href="https://www.facebook.com/nguyenthang.it.fb/" target="_blank" class="btn btn-outline-light btn-sm m-2">
+                    <i class="bi bi-facebook"></i> Facebook
+                </a>
+                <a href="https://www.tiktok.com/@eriusmon?_t=ZS-8ukjwdNKybx&_r=1" target="_blank" class="btn btn-outline-light btn-sm m-2">
+                    <i class="bi bi-tiktok"></i> TikTok
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

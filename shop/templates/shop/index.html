@@ -1,0 +1,147 @@
+{% extends "shop/layout.html"%}
+{%load static %}
+{%block section%}
+    <div class="container col-lg-10 col-xl-10">
+        <div class="row">
+            <div class="col-12 col-md-12 col-sm-12 col-lg-8 p-3 rounded-lg overflow-hidden">
+                <video autoplay loop muted playsinline style="max-width: 100%;">
+                    <source src="{% static 'images/index/home_video.mp4'%}" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4 p-1">
+                <h1 class="px-3 font-weight-bold">Chào mừng đến với Decor Dream – Nơi không gian của bạn trở nên đặc
+                    biệt!</h1>
+                <p>Chúng tôi hiểu rằng mỗi không gian đều có câu chuyện riêng, và nhiệm vụ của chúng tôi là giúp bạn
+                    tạo ra một không gian mang đậm dấu ấn cá nhân, từ những món đồ decor tinh tế đến những bộ setup
+                    độc đáo. Dù bạn đang tìm kiếm những chi tiết nhỏ để làm mới căn phòng hay muốn biến hóa toàn bộ
+                    không gian sống của mình, Decor Dream chính là điểm đến lý tưởng cho những ai yêu thích sự sáng
+                    tạo và đam mê trang trí.</p>
+                <button class="btn btn-primary rounded">Call to Action!</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container col-lg-10 col-xl-10">
+            <p class="bg-secondary rounded pt-3 pb-3 mb-3 text-white text-center"> Hãy khám phá bộ sưu tập của
+                chúng tôi – nơi các sản phẩm decor đẹp mắt và chất lượng cao được chọn lọc kỹ càng, giúp bạn thỏa
+                sức thể hiện phong cách và cá tính riêng. Đừng chỉ là người sống trong không gian, hãy là người tạo
+                dựng nên không gian của chính bạn!</p>
+        </div>
+    </div>
+    <div class="container col-10">
+        <div class="row">
+            <!-- Minimalist -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/minimalist.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Minimalist</h5>
+                        <p class="card-text">Sử dụng ít đồ đạc, màu sắc trung tính, không gian thoáng đãng.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modern -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/modern.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Modern</h5>
+                        <p class="card-text">Thiết kế đơn giản, sử dụng kính, kim loại, đèn LED RGB tạo điểm nhấn.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gaming Setup -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/gaming.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Gaming Setup</h5>
+                        <p class="card-text">Nhiều đèn LED RGB, màn hình cong, ghế gaming.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dark/Black Theme -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/dark_black.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Dark/Black Theme</h5>
+                        <p class="card-text">Màu đen hoặc xám đậm, kết hợp ánh sáng LED RGB.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- White/Light Theme -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/white.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">White/Light Theme</h5>
+                        <p class="card-text">Chủ yếu dùng màu trắng hoặc pastel, tạo cảm giác nhẹ nhàng.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nature/Wood Setup -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/nature_wood.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Nature/Wood Setup</h5>
+                        <p class="card-text">Bàn gỗ, cây xanh, đèn vàng ấm tạo không gian thư giãn.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cyberpunk/Futuristic -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/cyberpunk.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Cyberpunk/Futuristic</h5>
+                        <p class="card-text">Đèn neon, tone màu tím, xanh dương, đỏ, thiết kế sci-fi.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Industrial -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/index/industrial.jpg'%}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Industrial</h5>
+                        <p class="card-text">Kim loại, gỗ, bê tông, thiết kế mạnh mẽ, nam tính.</p>
+                    </div>
+                    <div class="card-footer text-left">
+                        <button class="btn btn-primary rounded">More Info</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
