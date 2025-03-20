@@ -31,13 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 # settings.py
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Đường dẫn đến thư mục static
-]
-
 INSTALLED_APPS = [
     'shop',
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

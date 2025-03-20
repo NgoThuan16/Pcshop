@@ -150,7 +150,7 @@
                     <div class="card h-100">
                         <img src="{% static product.image_url%}" alt="Product Image">
                         <div class="card-body">
-                            <h2 class="text-primary"><b>{{product.name}}</b></h2>
+                            <a href="{%url 'product' product.id%}" class="text-primary"><h2><b>{{product.name}}</b></h2></a>
                             <h2><b>{{product.price}}</b></h2>
                             <p>{{product.description}}</p>
                         </div>
