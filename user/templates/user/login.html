@@ -26,9 +26,11 @@
                             <h1 class="Login"><b>Login here</b></h1>
                         </div>
                         <div>
-                        {%if message%}
-                            <div>{{message}}</div>
-                        {% endif %}
+                            {%if message%}
+                                <div class="alert alert-danger" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endif %}
                         </div>
                         {% csrf_token %}
                         <label for="Username"><b>Username</b></label>
@@ -37,7 +39,7 @@
                         <label for="password"><b>Password</b></label>
                         <input type="password" name = "password" placeholder="Password"/>
     
-                        <input  class="login bg-gradient btn-success container col-12 rounded p-3 mt-4 text-white" type="submit" value="Login">
+                        <button  class="login bg-gradient btn-success container col-12 rounded p-3 mt-4 text-white" type="submit">Login</button>
                         <div class="social bg-gradient">
                             <div class="go btn-light shadow"><b>Google</b></div>
                             <div class="fb btn-primary shadow"><b>Facebook</b></div>

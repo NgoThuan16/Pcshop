@@ -12,6 +12,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Decor Dream</title>
+    <style>
+        .sidebar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: transparent;
+            padding: 10px;
+    
+        }
+    
+        .container {
+            background-color: white;
+            border-radius: 10px;
+        }
+    
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+    
+        .sidebar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: blur(5px);
+        }
+        .cart-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .cart-popup:hover {
+            background-color: #0056b3;
+        }
+        
+        .cart-icon {
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+    {% block style %}
+    
+    {%endblock%}    
 </head>
 
 
@@ -25,7 +83,7 @@
         <div class="container shadow bg-dark text-white">
             <div class="row">
                 <div class="col-2 py-3">
-                    <img src="{%static 'images/Logo.png' %}" style="max-width: 50%;" alt="logo">
+                    <a href="{%url 'index'%}"><img src="{%static 'images/Logo.png' %}" style="max-width: 50%;" alt="logo"></a>
                 </div>
 
                 <div class="col-10 d-flex flex-row-reverse">
@@ -35,9 +93,8 @@
                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-
                             <div class="collapse navbar-collapse" id="navbarNav">
-
+                                
                                 <form class="d-flex">
                                     <input class="form-control mr-2" type="text" placeholder="Search">
                                     <button class="btn btn-primary" type="button">Search</button>
@@ -54,7 +111,7 @@
                                         <a class="nav-link text-muted" href="{%url 'services'%}"><b>Services</b></a>
                                     </li>
                                     <li class="nav-item text-right">
-                                        <a class="nav-link text-muted" href="#"><b>Contact</b></a>
+                                        <a class="nav-link text-muted" href="{%url 'contact'%}"><b>Contact</b></a>
                                     </li>
                                     <li class="nav-item text-right">
                                         <a class="nav-link text-white"
@@ -74,6 +131,9 @@
     </header>
 
     <section>
+        <div class="cart-popup" data-bs-toggle="tooltip" title="Giỏ hàng">
+            <i class="bi bi-cart cart-icon"></i>
+        </div>
         {%block section%}
         {% endblock %}
     </section>

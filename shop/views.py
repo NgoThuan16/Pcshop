@@ -20,3 +20,6 @@ def product(request, product_id):
     return render(request, "shop/product.html", {
         "product": _product,
     })
+
+def contact_view(request):
+    return render(request, "shop/contact.html")

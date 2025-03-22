@@ -1,2 +1,168 @@
 {%extends 'shop/layout.html'%}
 {%load static%}
+
+{%block style%}
+<style>
+    .sidebar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: transparent;
+        padding: 10px;
+
+    }
+
+    .container {
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 100px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .sidebar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+        filter: blur(5px);
+    }
+
+    body {
+        background-color: #f8f9fa;
+    }
+
+    h2 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .sprite-product-sharing {
+        width: 32px;
+        height: 32px;
+        background-image: url('sprite-sharing-icons.png');
+        /* Ảnh sprite */
+        background-size: cover;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .sprite-product-sharing-fm {
+        background-position: 0 0;
+    }
+
+    /* Messenger */
+    .sprite-product-sharing-fb {
+        background-position: -40px 0;
+    }
+
+    /* Facebook */
+    .sprite-product-sharing-pt {
+        background-position: -80px 0;
+    }
+
+    /* Pinterest */
+
+    .Vo8Ebs {
+        margin-right: 8px;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+</style>
+{%endblock%}
+
+{%block section%}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left sibebar 2 grids -->
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block sidebar">
+            <img src="{%static 'images/category/bg_body - Copy.jpg'%}" class="img-fluid" alt="Left Sidebar">
+        </div>
+        <!--  Main content 8 grids -->
+        <div class="item col-xl-8 col-lg-8 col-md-12 col-sm-12 p-4">
+            <div class="row">
+                <div class="col-md-5">
+                    <div id="carouselExampleIndicators" class="carousel slide col-12 p-3" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="{% static product.image_url%}" alt="First slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-3 d-flex align-items-center">
+                        <span class="me-2">Chia sẻ:</span>
+
+                        <a class="Vo8Ebs" href="https://www.messenger.com/" target="_blank">
+                            <img src="{%static 'images/category/messenger_logo.webp'%}" alt="Messenger" width="32">
+                        </a>
+
+                        <a class="Vo8Ebs" href="https://www.facebook.com/" target="_blank">
+                            <img src="{%static 'images/category/facebook_logo.webp'%}" alt="Facebook" width="32">
+                        </a>
+
+                        <a class="Vo8Ebs" href="https://www.pinterest.com/" target="_blank">
+                            <img src="{%static 'images/category/pinterest_logo.jpg'%}" alt="Pinterest" width="32">
+                        </a>
+                    </div>
+
+                    <!-- Love/Rate Button -->
+                    <div class="mt-3 d-flex align-items-center">
+                        <button class="btn btn-light border">
+                            <i class="fa fa-heart text-danger"></i> Đã thích (86)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="container col-md-7">
+                    <h3>{{product.name}}</h3>
+                    <p>_ | _ | _</p>
+                    <p>
+                        <span class="text-danger h1">{{product.price}}</span>
+                        <small><del>{{product.price}}</del></small>
+                        <span class="text-success">(-0%)</span>
+                    </p>
+
+                    <p>
+                        <strong>Quantity:</strong>
+                        <input type="number" value="1" min="1" class="form-control-inline w-2">
+                    </p>
+                    <button class="btn btn-danger">Buy Now</button>
+                    <button class="btn btn-dark">Add to cart</button>
+                </div>
+                <div class="h2 col-12"> About this item</div>
+                <div class="h3 col-12">PRODUCT DESCRIPTION - {{product.name}}</div>
+                <div class="col-12 product-description">
+                    <p>{{ product.description }}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right SibeBar 2 Grids -->
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block sidebar">
+            <img src="{%static 'images/category/bg_body.jpg'%}" class="img-fluid" alt="Right Sidebar">
+        </div>
+    </div>
+</div>
+{%endblock%}
