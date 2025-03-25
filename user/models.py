@@ -8,14 +8,14 @@ class userProfile(models.Model):
         choices = [('admin', 'Admin'), ('customer', 'Customer')],
         default = 'customer'
     )
-
     gender = models.CharField(
         max_length = 10,
         choices = [('male', 'Male'),('female','Female')],
         blank = True,
         null = True
     )
-    country = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=200, blank=True, null=True)
+    #phone_number = models.CharField(max_length=10, blank=True, null=True)
 
     def __str(self):
         return f"{self.role}-{self.user.username}"

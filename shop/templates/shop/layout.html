@@ -1,159 +1,306 @@
-{% load static%}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Decor Dream</title>
     <style>
-        .sidebar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: transparent;
-            padding: 10px;
-    
+      .sidebar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: transparent;
+        padding: 10px;
+      }
+
+      .container {
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 100px;
+        height: 100vh;
+        overflow-y: auto;
+      }
+
+      .sidebar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+        filter: blur(5px);
+      }
+      .cart-popup {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+
+      .cart-popup:hover {
+        background-color: #0056b3;
+      }
+
+      .cart-icon {
+        color: white;
+        font-size: 20px;
+      }
+      .Search_bar {
+        margin: 15px 0px 15px 0px;
+        margin-right: 0;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border: 0;
+      }
+
+      .Search_button {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        margin-left: 0;
+        border: 0;
+        margin: 15px 0px 15px 0px;
+      }
+
+      .Search_button:hover {
+        display: flex;
+        background: linear-gradient(90deg, #2e3d8e, transparent) #2196f3;
+        font-family: inherit;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 1s;
+        place-content: center;
+        box-shadow: inset;
+      }
+
+      .logo_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        object-fit: cover;
+      }
+      .Search_box {
+        border: 0;
+      }
+      .logo_image {
+        max-width: 100%;
+        height: auto;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      @media (max-width: 576px) {
+        .logo_container {
+          flex: 1 !important;
+          justify-content: flex-start !important;
+          padding: 5px !important;
+          width: auto !important;
         }
-    
-        .container {
-            background-color: white;
-            border-radius: 10px;
+
+        /* Search Box */
+        .Search_box {
+          flex: 2 !important;
+          width: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+          padding: 0 !important;
+          margin: 15px 0 !important;
         }
-    
-        .sidebar {
-            position: sticky;
-            top: 100px;
-            height: 100vh;
-            overflow-y: auto;
+
+        .Search_bar {
+          flex: 3 !important;
+          margin: 0 !important;
+          font-size: 14px !important;
+          width: 100% !important;
+          min-width: 200px;
         }
-    
-        .sidebar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            filter: blur(5px);
+
+        .Search_button {
+          font-size: 14px !important;
+          width: auto !important;
+          min-width: 50px !important;
         }
-        .cart-popup {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #007bff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            z-index: 1000;
+
+        .narbar_container {
+          flex: 1 !important;
+          padding: 0 !important;
+          display: flex !important;
+          justify-content: flex-end !important;
+          width: 100% !important;
         }
-        
-        .cart-popup:hover {
-            background-color: #0056b3;
+
+        .navbar-nav .nav-item {
+          font-size: 12px !important;
         }
-        
-        .cart-icon {
-            color: white;
-            font-size: 20px;
+
+        /* Đảm bảo các container (logo, search box, navbar) đều nằm trên cùng một hàng */
+        .d-flex {
+          display: flex !important;
+          flex-wrap: nowrap !important;
+          justify-content: space-between !important;
         }
+      }
     </style>
-    {% block style %}
-    
-    {%endblock%}    
-</head>
+    {% block style %} {% endblock %}
+  </head>
+  <body>
+    <header
+      style="
+        position: sticky;
+        top: 0;
+        padding: 10px 16px;
+        background: #555;
+        color: #f1f1f1;
+        z-index: 100;
+      "
+      class="bg-dark d-flex"
+    >
+      <div class="container shadow bg-dark text-white d-flex">
+        <div class="row">
+          <!-- Logo Shop - Left side -->
+          <div class="logo_container col-lg-1 col-xl-1 col-md-2 col-sm-2 p-3">
+            <a href="{%url 'index'%}"
+              ><img
+                src="{%static 'images/Logo.png'%}"
+                class="logo_image"
+                alt=" Logo"
+            /></a>
+          </div>
 
+          <!-- Center -->
+          <div
+            class="Search_box col-lg-6 col-xl-6 col-md-6 col-sm-6 d-flex container-fluid p-2"
+          >
+            <input
+              class="Search_bar col-lg-10 col-xl-10 col-md-8 col-sm-8 p-2"
+              type="text"
+              placeholder="Search"
+            />
+            <button
+              class="Search_button col-lg-2 col-xl-2 col-md-4 col-sm-4 p-2 btn-primary"
+              type="button"
+            >
+              Search
+            </button>
+          </div>
 
-<body>
-    <header style="position: sticky;
-    top: 0;
-    padding: 10px 16px;
-    background: #555;
-    color: #f1f1f1;
-    z-index: 20;" class="bg-dark py-3">
-        <div class="container shadow bg-dark text-white">
-            <div class="row">
-                <div class="col-2 py-3">
-                    <a href="{%url 'index'%}"><img src="{%static 'images/Logo.png' %}" style="max-width: 50%;" alt="logo"></a>
+          <!-- Right Side -->
+          <div
+            class="narbar_container col-lg-5 col-xl-5 col-md-2 col-sm-2 d-flex flex-row-reverse"
+          >
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <div class="container-fluid">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                    <li class="nav-item text-right">
+                      <a class="nav-link text-white" href="{%url 'index'%}"
+                        ><b>Home</b></a
+                      >
+                    </li>
+                    <li class="nav-item text-right">
+                      <a class="nav-link text-muted" href="{%url 'about'%}"
+                        ><b>About</b></a
+                      >
+                    </li>
+                    <li class="nav-item text-right">
+                      <a class="nav-link text-muted" href="{%url 'services'%}"
+                        ><b>Services</b></a
+                      >
+                    </li>
+                    <li class="nav-item text-right">
+                      <a class="nav-link text-muted" href="{%url 'contact'%}"
+                        ><b>Contact</b></a
+                      >
+                    </li>
+                    <li class="nav-item text-right" id="login-logout-link">
+                      {% if request.user.is_authenticated %}
+                      <a class="nav-link text-danger" href="#"
+                        ><b>Logout</b></a
+                      >
+                      {% else %}
+                      <a class="nav-link text-white" href="#"
+                        ><b>Login</b></a
+                      >
+                      {% endif %}
+                    </li>
+                  </ul>
                 </div>
-
-                <div class="col-10 d-flex flex-row-reverse">
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                
-                                <form class="d-flex">
-                                    <input class="form-control mr-2" type="text" placeholder="Search">
-                                    <button class="btn btn-primary" type="button">Search</button>
-                                </form>
-
-                                <ul class="navbar-nav ms-auto">
-                                    <li class="nav-item text-right">
-                                        <a class="nav-link text-white" href="{%url 'index'%}"><b>Home</b></a>
-                                    </li>
-                                    <li class="nav-item text-right">
-                                        <a class="nav-link text-muted" href="{%url 'about'%}"><b>About</b></a>
-                                    </li>
-                                    <li class="nav-item text-right">
-                                        <a class="nav-link text-muted" href="{%url 'services'%}"><b>Services</b></a>
-                                    </li>
-                                    <li class="nav-item text-right">
-                                        <a class="nav-link text-muted" href="{%url 'contact'%}"><b>Contact</b></a>
-                                    </li>
-                                    <li class="nav-item text-right">
-                                        <a class="nav-link text-white"
-                                            href="{%url 'login'%}"><b>Login</b></a>
-                                    </li>
-                                    <li class="nav-item text-right">
-                                        <a class="nav-link text-white"
-                                            href="{%url 'register'%}"><b>Register</b></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+              </div>
+            </nav>
+          </div>
         </div>
+      </div>
     </header>
 
     <section>
-        <div class="cart-popup" data-bs-toggle="tooltip" title="Giỏ hàng">
-            <i class="bi bi-cart cart-icon"></i>
-        </div>
-        {%block section%}
-        {% endblock %}
+      <div class="cart-popup" data-bs-toggle="tooltip" title="shopping_cart">
+        <i class="bi bi-cart cart-icon"></i>
+      </div>
+      {% block section %} {% endblock %}
     </section>
-    
 
-    <footer class="container mt-3 col-xl-12 col-lg-12 col-sm-12 col-md-12 shadow p-4 bg-dark text-white text-center">
-        <div class="row">
-            <div class="col-12">
-                <p>&#169; 2025 Decor Dream. All rights reserved.</p>
-            </div>
-            <div class="col-12">
-                <a href="https://www.facebook.com/nguyenthang.it.fb/" target="_blank" class="btn btn-outline-light btn-sm m-2">
-                    <i class="bi bi-facebook"></i> Facebook
-                </a>
-                <a href="https://www.tiktok.com/@eriusmon?_t=ZS-8ukjwdNKybx&_r=1" target="_blank" class="btn btn-outline-light btn-sm m-2">
-                    <i class="bi bi-tiktok"></i> TikTok
-                </a>
-            </div>
+    <footer
+      class="container mt-3 col-xl-12 col-lg-12 col-sm-12 col-md-12 shadow p-4 bg-dark text-white text-center"
+    >
+      <div class="row">
+        <div class="col-12">
+          <p>© 2025 Decor Dream. All rights reserved.</p>
         </div>
+        <div class="col-12">
+          <a
+            href="https://www.facebook.com/nguyenthang.it.fb/"
+            target="_blank"
+            class="btn btn-outline-light btn-sm m-2"
+          >
+            <i class="bi bi-facebook"></i> Facebook
+          </a>
+          <a
+            href="https://www.tiktok.com/@eriusmon?_t=ZS-8ukjwdNKybx&_r=1"
+            target="_blank"
+            class="btn btn-outline-light btn-sm m-2"
+          >
+            <i class="bi bi-tiktok"></i> TikTok
+          </a>
+        </div>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>

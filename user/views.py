@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from .register_form import registrationForm
@@ -44,3 +43,9 @@ def register_view(request):
     else:
         form = registrationForm()
     return render(request, 'user/register.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return render(request, "shop/index.html", {
+        "message": "Logged out"
+    })
