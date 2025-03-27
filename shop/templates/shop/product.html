@@ -142,13 +142,18 @@
                         <small><del>{{product.price}}</del></small>
                         <span class="text-success">(-0%)</span>
                     </p>
-
-                    <p>
-                        <strong>Quantity:</strong>
-                        <input type="number" value="1" min="1" class="form-control-inline w-2">
-                    </p>
-                    <button class="btn btn-danger">Buy Now</button>
-                    <button class="btn btn-dark">Add to cart</button>
+                
+                    <form method="post" class="d-flex flex-column align-items-start">
+                        {% csrf_token %}
+                        <p class="mb-2">
+                            <strong>Quantity:</strong>
+                            <input type="number" name="quantity" value="1" min="1" class="form-control-inline w-25">
+                        </p>
+                        <div class="d-flex align-items-start">
+                            <button type="submit" formaction="{%url 'addToCart' product.id%}" class="btn btn-dark mb-2">Add to Cart</button>
+                            <button type="submit" formaction="" class="btn btn-danger" style="margin-left:10px;">Buy Now</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="h2 col-12"> About this item</div>
                 <div class="h3 col-12">PRODUCT DESCRIPTION - {{product.name}}</div>
