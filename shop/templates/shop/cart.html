@@ -1,0 +1,137 @@
+{%extends 'shop/layout.html'%}
+{%load static%}
+
+{%block style%}
+<style>
+    #user_cart {
+        margin: 50px;
+    }
+
+    td{
+        text-aglin: center;
+    }
+</style>
+{%endblock%}
+
+{%block section%}
+<div class="">
+
+        <h2 class="text-center my-4">THÔNG TIN GIỎ HÀNG CỦA <span style="color: red; text-transform: uppercase;">{{user.username}}<span> {{cart.id}}</h2>
+        <div id="user_cart">
+        <div class="row">
+        <table id="cart-table" class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col-auto "><span>Sản phẩm</span></th>
+                <th class="col-1 "><span>Đơn giá</span></th>
+                <th class="col-1 "><span>Số lượng</span></th>
+                <th class="col-1 "><span>Số tiền</span></th>
+                <th class="col-1 "><span>Thao tác</span></th>
+            </tr>
+            </thead>
+            <tbody id="cart-tbody">
+            </tbody>
+        </table>
+        
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.onload = () => {
+        function Cart(id, user_id){
+            this.id = id;
+            this.user_id = user_id;
+        }
+
+        function CI(cart_id, product_id, quantity){
+            this.cart_id = cart_id;
+            this.product_id = product_id;
+            this.quantity = Number(quantity);
+        }
+
+
+        function userCI(product_id, name, price, quantity){
+            this.product_id = product_id;
+            this.name = name;
+            this.price = parseFloat(price);
+            this.quantity = Number(quantity);
+        }
+
+        function getQuantityWithID(id){
+            
+            {%for item in cartitems%}
+                if ("{{item.product_id}}" == id.toString()){
+                    return Number({{item.quantity}});
+               }
+            {%endfor%}
+        }
+
+        function displayItems(){
+            const tbody = document.getElementById("cart-tbody");
+            cartItemsList = [];
+            itemQuantityList = [];
+            userID = Number("{{user.id}}");
+            userItems = [];
+
+            {%for cart in carts%}
+                if ({{cart.user_id}} == userID){
+                    userCartID = Number("{{cart.id}}");
+                }
+            {%endfor%}
+
+
+            {%for item in cartitems%}
+                if (userCartID == {{item.cart_id}}){
+                    var ci = new CI("{{item.cart_id}}", "{{item.product_id}}", "{{item.quantity}}");
+                    cartItemsList.push(ci);
+                }
+            {%endfor%}
+            
+            userItemIDs = [];
+            userItemQ = [];
+            cartItemsList.forEach((item) => {
+                let cid = Number(item.cart_id);
+                if (cid == userCartID){
+                    userItemIDs.push(item.product_id);
+                }
+            });
+
+            
+            {%for product in products%}
+            if (userItemIDs.includes("{{product.id}}")){
+                var pro = new userCI("{{product.id}}", "{{product.name}}", "{{product.price}}", getQuantityWithID("{{product.id}}"));
+                userItems.push(pro);
+            }
+            {%endfor%}
+
+            {%for product in products%}
+            {%endfor%}
+
+            console.log(cartItemsList);
+            console.log(userItems); 
+            
+
+            // Display
+            userItems.forEach((item) => {
+                totalPrice = item.quantity * item.price;
+                itemContent = 
+                `
+                    <tr>
+                        <td class="col-auto"><b>${item.name}</b></th>
+                        <td class="col-1 aglin-mid">$${item.price}</th>
+                        <td class="col-1 aglin-mid">${item.quantity}</th>
+                        <td class="col-1 aglin-mid"><span class="text-danger">$${totalPrice}</span></th>
+                        <td class="col-1 aglin-mid"><a href="">Xóa</th>
+                    </tr>
+                `
+                tbody.innerHTML += itemContent;
+            });
+        }
+        
+        displayItems();
+    }
+</script>
+{%endblock%}

@@ -25,6 +25,16 @@ def product(request, product_id):
 def contact_view(request):
     return render(request, "shop/contact.html")
 
+def cart_view(request):
+    products =  Product.objects.all()
+    carts = Cart.objects.all()
+    cartitems = CartItem.objects.all()
+    return render(request, "shop/cart.html", {
+        "products": products,
+        "carts": carts,
+        "cartitems": cartitems,
+    })
+
 @login_required
 def addToCart(request, product_id):
     if request.method == "POST":

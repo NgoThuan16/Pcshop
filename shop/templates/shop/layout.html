@@ -272,7 +272,9 @@
 
     <section>
       <div class="cart-popup" data-bs-toggle="tooltip" title="shopping_cart">
-        <i class="bi bi-cart cart-icon"></i>
+        <a href="{%url 'cart'%}">
+          <i class="bi bi-cart cart-icon"></i>
+        </a>
       </div>
       {% block section %} {% endblock %}
     </section>
