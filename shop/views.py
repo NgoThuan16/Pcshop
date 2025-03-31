@@ -50,3 +50,9 @@ def addToCart(request, product_id):
             cart_item.quantity += quantity
             cart_item.save()
     return redirect('product', product_id=product.id)
+
+@login_required
+def removeFromCart(request, id):
+    cartItem = CartItem.objects.get(pk=id)
+    cartItem.delete()
+    return redirect('cart')

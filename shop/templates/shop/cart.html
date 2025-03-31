@@ -40,6 +40,12 @@
 </div>
 
 <script>
+    // Load truoc
+    function RemoveItemFromCart(product_id, user_id){
+        console.log("Remove "+ `${product_id}` + " from user " + user_id);
+    }
+    const removeUrlBase = "{% url 'removeFromCart' 0 %}".replace('0', '');
+    
     window.onload = () => {
         function Cart(id, user_id){
             this.id = id;
@@ -53,23 +59,35 @@
         }
 
 
-        function userCI(product_id, name, price, quantity){
+        function userCI(id, product_id, name, price, quantity){
+            this.id = id;
             this.product_id = product_id;
             this.name = name;
             this.price = parseFloat(price);
             this.quantity = Number(quantity);
         }
 
-        function getQuantityWithID(id){
+        function getQuantityWithID(id, cart_id){
             
             {%for item in cartitems%}
-                if ("{{item.product_id}}" == id.toString()){
+                if (("{{item.product_id}}" == id.toString()) && ("{{item.cart_id}}" == cart_id.toString())){
                     return Number({{item.quantity}});
                }
             {%endfor%}
         }
 
+        function getIDCartItem(product_id, cart_id){
+            {%for item in cartitems%}
+                if (("{{item.product_id}}" == product_id.toString()) && ("{{item.cart_id}}" == cart_id.toString())){
+                    return Number({{item.id}});
+               }
+            {%endfor%}
+        }
+
+        
+
         function displayItems(){
+            const startTime = performance.now()
             const tbody = document.getElementById("cart-tbody");
             cartItemsList = [];
             itemQuantityList = [];
@@ -91,6 +109,7 @@
             {%endfor%}
             
             userItemIDs = [];
+
             userItemQ = [];
             cartItemsList.forEach((item) => {
                 let cid = Number(item.cart_id);
@@ -102,21 +121,16 @@
             
             {%for product in products%}
             if (userItemIDs.includes("{{product.id}}")){
-                var pro = new userCI("{{product.id}}", "{{product.name}}", "{{product.price}}", getQuantityWithID("{{product.id}}"));
+                var pro = new userCI(getIDCartItem("{{product.id}}", userCartID).toString(), "{{product.id}}", "{{product.name}}", "{{product.price}}", getQuantityWithID("{{product.id}}", userCartID.toString()));
                 userItems.push(pro);
             }
             {%endfor%}
 
-            {%for product in products%}
-            {%endfor%}
-
-            console.log(cartItemsList);
-            console.log(userItems); 
-            
 
             // Display
             userItems.forEach((item) => {
                 totalPrice = item.quantity * item.price;
+                const strTemp = `${removeUrlBase}${item.id}`;
                 itemContent = 
                 `
                     <tr>
@@ -124,11 +138,19 @@
                         <td class="col-1 aglin-mid">$${item.price}</th>
                         <td class="col-1 aglin-mid">${item.quantity}</th>
                         <td class="col-1 aglin-mid"><span class="text-danger">$${totalPrice}</span></th>
-                        <td class="col-1 aglin-mid"><a href="">Xóa</th>
+                        <td class="col-1 aglin-mid">
+                        <form method="post" action="${strTemp}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                        </th>
                     </tr>
                 `
                 tbody.innerHTML += itemContent;
             });
+            const endTime = performance.now()
+            const totalTime = endTime - startTime;
+            console.log(totalTime);
         }
         
         displayItems();
