@@ -41,11 +41,11 @@
 
 <script>
     // Load truoc
-    function RemoveItemFromCart(product_id, user_id){
-        console.log("Remove "+ `${product_id}` + " from user " + user_id);
-    }
     const removeUrlBase = "{% url 'removeFromCart' 0 %}".replace('0', '');
     
+    const cart_popup = document.getElementById("cart");
+        cart_popup.style.display = "none";
+
     window.onload = () => {
         function Cart(id, user_id){
             this.id = id;
